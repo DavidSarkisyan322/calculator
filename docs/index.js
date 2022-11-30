@@ -1,5 +1,3 @@
-// import ".styles.css";
-
 const title = document.createElement("h1");
 
 // inputs
@@ -19,7 +17,21 @@ const multiplyButton = document.createElement("button");
 const divisionButton = document.createElement("button");
 const squaredButton = document.createElement("button");
 const percentButton = document.createElement("button");
-const resultButton = document.createElement("button")
+const clearButton = document.createElement("button");
+const resultButton = document.createElement("button");
+
+//classes
+input.classList.add("input")
+plusButton.classList.add("button");
+minusButton.classList.add("button");
+multiplyButton.classList.add("button");
+divisionButton.classList.add("button");
+squaredButton.classList.add("button");
+percentButton.classList.add("button");
+resultButton.classList.add("button");
+clearButton.classList.add("button");
+title.classList.add("h1");
+prevValue.classList.add("p");
 
 // attributes
 input.type = "number";
@@ -32,12 +44,13 @@ divisionButton.innerText = "/";
 squaredButton.innerText = "**";
 percentButton.innerText = "%";
 resultButton.innerText = "=";
+clearButton.innerText = "CE"
 
 
 // funstions
 function plus() { 
   if(left){
-    prevValue.innerText = left;
+    prevValue.innerText = left + "+" + input.value;
     input.value = Number(input.value) + Number(left);
     left = input.value;
   } else {
@@ -46,15 +59,13 @@ function plus() {
     input.value = "";
   }
 }
-    
-  // console.log(input.value);
 
 plusButton.addEventListener("click", plus);
 
 function multiply() {
   if(left){
-    prevValue.innerText = left;
-    input.value = Number(input.value) * Number(left);
+    prevValue.innerText = left + "*" + input.value;
+    input.value = Number(left) * Number(input.value);
     left = input.value;
   } else {
     left = input.value;
@@ -67,8 +78,8 @@ multiplyButton.addEventListener("click", multiply);
 
 function division() {
   if(left){
-    prevValue.innerText = left;
-    input.value = Number(input.value) / Number(left);
+    prevValue.innerText = left + "/" + input.value;
+    input.value = Number(left) / Number(input.value);
     left = input.value;
   } else {
     left = input.value;
@@ -81,8 +92,8 @@ divisionButton.addEventListener("click", division);
 
 function minus() {
   if(left){
-    prevValue.innerText = left;
-    input.value = Number(input.value) - Number(left);
+    prevValue.innerText = left + "-" + input.value;
+    input.value = Number(left) - Number(input.value);
     left = input.value;
   } else {
     left = input.value;
@@ -95,7 +106,7 @@ minusButton.addEventListener("click", minus);
 
 function squared() {
   if(left){
-    prevValue.innerText = left;
+    prevValue.innerText = left + "**" + input.value;
     input.value = Number(input.value) ** Number(left);
     left = input.value;
   } else {
@@ -109,17 +120,24 @@ squaredButton.addEventListener("click", squared);
 
 function percent(){
   if(left){
-    prevValue.innerText = left;
-    input.value = Number(input.value) ** Number(left);
+    prevValue.innerText = left + "%" + input.value;
+    input.value = Number(input.value) * 100 / Number(left);
     left = input.value;
   } else {
     left = input.value;
-    middle = '**';
+    middle = '%';
     input.value = "";
   }
 }
 
-percentButton.addEventListener("click", percent);
+function clear(){
+  middle = 'CE';
+  left = "";
+  input.value = "";
+  prevValue.innerText = "";
+}
+
+clearButton.addEventListener("click", clear);
 
 function result() {
   console.log(left, middle)
@@ -150,10 +168,11 @@ document.body.append(title);
 document.body.append(prevValue);
 document.body.append(input);
 document.body.append(plusButton);
+document.body.append(minusButton);
 document.body.append(multiplyButton);
 document.body.append(divisionButton);
-document.body.append(minusButton);
 document.body.append(squaredButton);
 document.body.append(percentButton);
 document.body.append(resultButton);
+document.body.append(clearButton);
 
